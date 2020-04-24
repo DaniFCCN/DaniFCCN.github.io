@@ -13,21 +13,21 @@
 
         
         Microsoft.Maps.loadModule("Microsoft.Maps.SpatialMath", function () {
-            //Request the user's location
+            //REcojo localizacion
             navigator.geolocation.getCurrentPosition(function (position) {
                 var loc = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
 
-                //Create an accuracy circle
+                //Creo el ciruculo
                 var path = Microsoft.Maps.SpatialMath.getRegularPolygon(loc, 1, 36, Microsoft.Maps.SpatialMath.DistanceUnits.Kilometers);
    
                 var poly = new Microsoft.Maps.Polygon(path);
                 map.entities.push(poly);
 
-                //Add a pushpin at the user's location.
+                //Añadoel pin
                 var pin = new Microsoft.Maps.Pushpin(loc);
                 map.entities.push(pin);
 
-                //Center the map on the user's location.
+                //Centro el mapa
                 map.setView({ center: loc,  mapTypeId: Microsoft.Maps.MapTypeId.aerial, zoom: 14 });
             });
         });
